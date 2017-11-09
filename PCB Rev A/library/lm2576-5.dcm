@@ -1,0 +1,8 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP LM2576-5.0
+D REGULATOR (Negative voltage)
+F linear-tec/lt1175.pdf
+$ENDCMP
+#
+#End Doc Library

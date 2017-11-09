@@ -1,0 +1,8 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP IR2102
+D - HIGH AND LOW SIDE DRIVER
+F http://www.irf.com/product-info/datasheets/data/ir2104.pdf
+$ENDCMP
+#
+#End Doc Library

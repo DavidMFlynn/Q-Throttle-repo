@@ -1,0 +1,95 @@
+Reference              Value                  Footprint              Datasheet
+C1,C2,C3,C6,C9,
+C10,C12,C13,C14,C15,
+C16,C18,C21,C23,C25,
+C26,C28,C32,C33,C35,
+C36,C39,C43	0.1uf,C_0805_HandSoldering,
+C4,C24	1000uF 25v,C_Radial_D10_L20_P7.5,
+C5,C7,C8	15uF  50v,C_Radial_D6.3_L11.2_P2.5,
+C11	0.47uF  50v,C_Radial_D6.3_L11.2_P2.5,
+C17,C31,C40	0.01uf,C_0805_HandSoldering,
+C19,C20	220uF 50v,C_Radial_D10_L13_P5,
+C22,C42	2.2uF 25v,C_Radial_D5_L11_P2,
+C29,C37	0.001uf,C_0805_HandSoldering,
+C30,C38	1uf poly,C_Rect_L7_W2.5_P5,
+C41,C34	6.8uF 35v Tant,C_Radial_D5_L6_P2.5,
+C27	100uf 50v,C_Radial_D8_L11.5_P3.5,
+
+D1,D2,D3,D4,D5,
+D7,D20,D21,D26,D27	SBL845,Diode_TO-220_Vertical,
+D6,D16,D17,D24,D23	1N4148,Diode_DO-35
+D8,D9,D10,D11,D12,
+D13,D15,D19,D29	LED,LED-3MM,
+D14,D22	B140  Fast,SMA_Handsoldering,
+D18,D25	SMA 15V,SMA_Handsoldering,
+D28	1N4007,SMA_Handsoldering,
+
+F1	FUSE,Fuse_Holders_and_Fuses:Fuseholder5x20_horiz_SemiClosed_Casing10x25mm,
+L1	33uH,Choke_Toroid_ThroughHole:Choke_Toroid_12x24mm_Vertical,
+L2	100uH,Choke_Toroid_ThroughHole:Choke_Toroid_8x16mm_Vertical,
+
+R1,R2,R7	4.7M,R_0805_HandSoldering,
+R3,R54,R53,R44,R45	47Ω,R_0805_HandSoldering,
+R4,R5,R6,R10,R11,
+R15,R17,R23,R24,R27,
+R47,R48,R51	10K,R_0805_HandSoldering,
+R8,R13,R21	4.7K,R_0805_HandSoldering,
+R9	100Ω,R_0805_HandSoldering,
+R12,R14,R16,R25,R28,
+R29,R31,R33,R35,R36,
+R37,R38,R39,R40,R41,
+R42,R43,R52,R56,R57	1.00K,R_0805_HandSoldering,
+R18,R19,R34,R50	100K,R_0805_HandSoldering,
+R22	1.5K,R_0805_HandSoldering,
+R26	2.2K,R_0805_HandSoldering,
+R30	470Ω,R_0805_HandSoldering,
+R32,R46	10Ω,R_0805_HandSoldering,
+R49	0.1Ω,R_2512_HandSoldering,
+R55	200Ω,R_0805_HandSoldering,
+
+RV2	1KΩ,Potentiometer_Bourns_3296W_3-8Zoll_Inline_ScrewUp,
+R20	10K,R_0805_HandSoldering,
+RV1	5KΩ,Potentiometer_Bourns_3296W_3-8Zoll_Inline_ScrewUp,
+
+SW1	SW_PUSH,SW_SPST_PTS645,
+
+J1	CONN_01X08,Terminal_Blocks:TerminalBlock_Pheonix_MKDS1.5-8pol,
+J2	RJ-11,Connect:RJ12_E,
+J3	CONN_01X05,Pin_Headers:Pin_Header_Straight_1x05,
+J4	CONN_01X06,Pin_Headers:Pin_Header_Straight_1x06,
+J5	CONN_01X12,Connect:IDC_Header_Straight_12pins,
+J6	CONN_01X04,Pin_Headers:Pin_Header_Straight_1x04,
+J7	CONN_01X04,Pin_Headers:Pin_Header_Straight_1x04,
+
+Q1,Q2,Q4,Q5,Q6,
+Q7,Q8,Q9,Q10,Q15	2N7000,TO-92_Molded_Narrow,
+Q3	Q_PMOS_GDS,TO-263-3Lead,
+Q11,Q12,Q13,Q14	N-Ch TO-263,TO-263-3Lead,
+
+U1	SP3485CN,Power_Integrations:SO-8,
+U2	LM6132A,DIP-8_W7.62mm,
+U3	74LS125_(3V3),DIP-14_W7.62mm,
+U4	LM2677-12,TO-220-7C_w_heatsink,
+U5	MB85RC256V 32Kx8 FRAM ,SOIC (Optional)
+U6	74HCT04,DIP-14_W7.62mm,
+U7	LM358,DIP-8_W7.62mm,
+U8	PIC16(L)F1938-I/SP,DIP-28_W7.62mm,
+U9	74LS08,DIP-14_W7.62mm,
+U10	LM7805CT,TO-220,
+U11	LM555CN,DIP-8_W7.62mm,
+U12	IR2102,DIP-8_W7.62mm_LongPads,
+U13	LM555CN,DIP-8_W7.62mm,
+U14	IR2102,DIP-8_W7.62mm_LongPads,
+U15	LM78Lxx,TO-92_Molded_Narrow_Oval,
+U17	XBee_S1,XBee,
+
+
+
+
+
+
+
+
+
+
+

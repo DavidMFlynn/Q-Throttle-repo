@@ -1,0 +1,8 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP LM2677-12
+D REGULATOR (Negative voltage)
+F linear-tec/lt1175.pdf
+$ENDCMP
+#
+#End Doc Library

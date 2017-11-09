@@ -1,0 +1,275 @@
+EESchema Schematic File Version 2
+LIBS:Q-Throttle-rescue
+LIBS:power
+LIBS:device
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:microchip_pic16mcu
+LIBS:ir
+LIBS:ir2102
+LIBS:lm2576-5
+LIBS:lm555cn
+LIBS:lm2677-12
+LIBS:xbee_s1
+LIBS:74cb3t1g125
+LIBS:74ls125
+LIBS:Q-Throttle-cache
+EELAYER 26 0
+EELAYER END
+$Descr A 11000 8500
+encoding utf-8
+Sheet 3 3
+Title "Q-Throttle"
+Date "1/9/2016"
+Rev "0"
+Comp "DMFE"
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L +3.3V #PWR073
+U 1 1 56919EB6
+P 6100 4500
+F 0 "#PWR073" H 6100 4350 50  0001 C CNN
+F 1 "+3.3V" H 6118 4653 50  0000 C CNN
+F 2 "" H 6100 4500 50  0000 C CNN
+F 3 "" H 6100 4500 50  0000 C CNN
+	1    6100 4500
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR074
+U 1 1 5696F730
+P 5400 5100
+F 0 "#PWR074" H 5400 4850 50  0001 C CNN
+F 1 "GND" H 5408 4947 50  0000 C CNN
+F 2 "" H 5400 5100 50  0000 C CNN
+F 3 "" H 5400 5100 50  0000 C CNN
+	1    5400 5100
+	1    0    0    -1  
+$EndComp
+$Comp
+L XBee_S1 U17
+U 1 1 5698088E
+P 7750 3100
+F 0 "U17" H 7950 3653 60  0000 C CNN
+F 1 "XBee_S1" H 7950 3553 60  0000 C CNN
+F 2 "Microwave:XBee" H 7600 3500 60  0001 C CNN
+F 3 "" H 7600 3500 60  0000 C CNN
+	1    7750 3100
+	1    0    0    -1  
+$EndComp
+$Comp
+L +3.3V #PWR075
+U 1 1 569809AD
+P 7200 2600
+F 0 "#PWR075" H 7200 2450 50  0001 C CNN
+F 1 "+3.3V" H 7218 2753 50  0000 C CNN
+F 2 "" H 7200 2600 50  0000 C CNN
+F 3 "" H 7200 2600 50  0000 C CNN
+	1    7200 2600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7200 2600 7200 2800
+Wire Wire Line
+	7200 2800 7350 2800
+$Comp
+L GND #PWR076
+U 1 1 569809DC
+P 7200 3900
+F 0 "#PWR076" H 7200 3650 50  0001 C CNN
+F 1 "GND" H 7208 3747 50  0000 C CNN
+F 2 "" H 7200 3900 50  0000 C CNN
+F 3 "" H 7200 3900 50  0000 C CNN
+	1    7200 3900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7350 3700 7200 3700
+Wire Wire Line
+	7200 3700 7200 3900
+Wire Wire Line
+	4500 2900 7350 2900
+Text Notes 6900 2900 0    50   ~ 0
+TX
+Text Notes 4500 2800 0    50   ~ 0
+to RX on CPU
+Wire Wire Line
+	6100 3000 7350 3000
+Wire Wire Line
+	4450 3200 6100 3200
+Text Notes 6900 3000 0    50   ~ 0
+RX
+Text Notes 5100 3200 0    50   ~ 0
+RX
+Text Notes 4450 3100 0    50   ~ 0
+from TX on CPU
+$Comp
+L LED D29
+U 1 1 56980BEE
+P 6850 3500
+AR Path="/56980BEE" Ref="D29"  Part="1" 
+AR Path="/56919AA5/56980BEE" Ref="D29"  Part="1" 
+F 0 "D29" V 6900 3392 50  0000 R CNN
+F 1 "LED" V 6800 3392 50  0000 R CNN
+F 2 "LEDs:LED-3MM" H 6850 3500 50  0001 C CNN
+F 3 "" H 6850 3500 50  0000 C CNN
+	1    6850 3500
+	0    -1   -1   0   
+$EndComp
+$Comp
+L R R55
+U 1 1 56980CB2
+P 6850 3850
+F 0 "R55" H 6920 3900 50  0000 L CNN
+F 1 "200Ω" V 6850 3750 50  0000 L CNN
+F 2 "Resistors_SMD:R_0805_HandSoldering" V 6780 3850 50  0001 C CNN
+F 3 "" H 6850 3850 50  0000 C CNN
+	1    6850 3850
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR077
+U 1 1 56980D6D
+P 6850 4000
+F 0 "#PWR077" H 6850 3750 50  0001 C CNN
+F 1 "GND" H 6858 3847 50  0000 C CNN
+F 2 "" H 6850 4000 50  0000 C CNN
+F 3 "" H 6850 4000 50  0000 C CNN
+	1    6850 4000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7350 3300 6850 3300
+NoConn ~ 7350 3100
+NoConn ~ 7350 3200
+NoConn ~ 7350 3400
+NoConn ~ 7350 3500
+NoConn ~ 7350 3600
+NoConn ~ 8550 2800
+NoConn ~ 8550 2900
+NoConn ~ 8550 3000
+NoConn ~ 8550 3100
+NoConn ~ 8550 3200
+NoConn ~ 8550 3300
+NoConn ~ 8550 3400
+NoConn ~ 8550 3500
+NoConn ~ 8550 3600
+NoConn ~ 8550 3700
+$Comp
+L LM78L05ACZ U15
+U 1 1 56A3C36C
+P 5400 4650
+F 0 "U15" H 5400 5055 50  0000 C CNN
+F 1 "LM78Lxx" H 5400 4955 50  0000 C CNN
+F 2 "TO_SOT_Packages_THT:TO-92_Molded_Narrow_Oval" H 5400 4855 50  0000 C CIN
+F 3 "" H 5400 4650 50  0000 C CNN
+	1    5400 4650
+	1    0    0    -1  
+$EndComp
+$Comp
+L CP1 C42
+U 1 1 56A3C3BF
+P 4800 4850
+F 0 "C42" H 4550 4900 50  0000 L CNN
+F 1 "2.2uf 25V" H 4300 4800 50  0000 L CNN
+F 2 "Capacitors_ThroughHole:C_Radial_D5_L11_P2" H 4800 4850 50  0001 C CNN
+F 3 "" H 4800 4850 50  0000 C CNN
+	1    4800 4850
+	1    0    0    -1  
+$EndComp
+$Comp
+L C C43
+U 1 1 56A3C4B0
+P 6000 4850
+F 0 "C43" H 6115 4900 50  0000 L CNN
+F 1 "0.1 uf" H 6115 4800 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0805_HandSoldering" H 6038 4700 50  0001 C CNN
+F 3 "" H 6000 4850 50  0000 C CNN
+	1    6000 4850
+	1    0    0    -1  
+$EndComp
+$Comp
+L D_Small D28
+U 1 1 56A3C505
+P 4500 4600
+F 0 "D28" H 4500 4407 50  0000 C CNN
+F 1 "1N4007" H 4500 4507 50  0000 C CNN
+F 2 "Diodes_SMD:SMA_Handsoldering" V 4500 4600 50  0001 C CNN
+F 3 "" V 4500 4600 50  0000 C CNN
+	1    4500 4600
+	-1   0    0    1   
+$EndComp
+$Comp
+L +5V #PWR078
+U 1 1 56A3C5A0
+P 4300 4400
+F 0 "#PWR078" H 4300 4250 50  0001 C CNN
+F 1 "+5V" H 4318 4553 50  0000 C CNN
+F 2 "" H 4300 4400 50  0000 C CNN
+F 3 "" H 4300 4400 50  0000 C CNN
+	1    4300 4400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4300 4400 4300 4600
+Wire Wire Line
+	4300 4600 4400 4600
+Wire Wire Line
+	4600 4600 5000 4600
+Wire Wire Line
+	4800 4700 4800 4600
+Connection ~ 4800 4600
+Wire Wire Line
+	6100 4500 6100 4600
+Wire Wire Line
+	6100 4600 5800 4600
+Wire Wire Line
+	6000 4700 6000 4600
+Connection ~ 6000 4600
+Wire Wire Line
+	4800 5000 6000 5000
+Wire Wire Line
+	5400 4900 5400 5100
+Connection ~ 5400 5000
+Text GLabel 4500 2900 0    60   Input ~ 0
+XB_Dout
+Text GLabel 4450 3200 0    60   Input ~ 0
+XB_Din
+Wire Wire Line
+	6100 3200 6100 3000
+Wire Wire Line
+	6850 3300 6850 3350
+Wire Wire Line
+	6850 3700 6850 3650
+Text Notes 7400 4000 0    50   ~ 0
+ZigBee IEEE 802.15.4 Transiever
+$EndSCHEMATC

@@ -1,4 +1,43 @@
-EESchema Schematic File Version 4
+EESchema Schematic File Version 2
+LIBS:Q-Throttle-rescue
+LIBS:power
+LIBS:device
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:microchip_pic16mcu
+LIBS:ir
+LIBS:ir2102
+LIBS:lm2576-5
+LIBS:lm555cn
+LIBS:lm2677-12
+LIBS:xbee_s1
+LIBS:74cb3t1g125
+LIBS:74ls125
 LIBS:Q-Throttle-cache
 EELAYER 26 0
 EELAYER END
@@ -15,7 +54,7 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L power1:+3.3V #PWR073
+L +3.3V #PWR073
 U 1 1 56919EB6
 P 6100 4500
 F 0 "#PWR073" H 6100 4350 50  0001 C CNN
@@ -26,7 +65,7 @@ F 3 "" H 6100 4500 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power1:GND #PWR074
+L GND #PWR074
 U 1 1 5696F730
 P 5400 5100
 F 0 "#PWR074" H 5400 4850 50  0001 C CNN
@@ -37,7 +76,7 @@ F 3 "" H 5400 5100 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L xbee_s1:XBee_S1 U17
+L XBee_S1 U17
 U 1 1 5698088E
 P 7750 3100
 F 0 "U17" H 7950 3653 60  0000 C CNN
@@ -48,7 +87,7 @@ F 3 "" H 7600 3500 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power1:+3.3V #PWR075
+L +3.3V #PWR075
 U 1 1 569809AD
 P 7200 2600
 F 0 "#PWR075" H 7200 2450 50  0001 C CNN
@@ -63,7 +102,7 @@ Wire Wire Line
 Wire Wire Line
 	7200 2800 7350 2800
 $Comp
-L power1:GND #PWR076
+L GND #PWR076
 U 1 1 569809DC
 P 7200 3900
 F 0 "#PWR076" H 7200 3650 50  0001 C CNN
@@ -94,7 +133,7 @@ RX
 Text Notes 4450 3100 0    50   ~ 0
 from TX on CPU
 $Comp
-L device1:LED D29
+L LED D29
 U 1 1 56980BEE
 P 6850 3500
 AR Path="/56980BEE" Ref="D29"  Part="1" 
@@ -107,7 +146,7 @@ F 3 "" H 6850 3500 50  0000 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L device1:R R55
+L R R55
 U 1 1 56980CB2
 P 6850 3850
 F 0 "R55" H 6920 3900 50  0000 L CNN
@@ -118,7 +157,7 @@ F 3 "" H 6850 3850 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power1:GND #PWR077
+L GND #PWR077
 U 1 1 56980D6D
 P 6850 4000
 F 0 "#PWR077" H 6850 3750 50  0001 C CNN
@@ -146,7 +185,7 @@ NoConn ~ 8550 3500
 NoConn ~ 8550 3600
 NoConn ~ 8550 3700
 $Comp
-L Q-Throttle-rescue:LM78L05ACZ-RESCUE-Q-Throttle U15
+L LM78L05ACZ U15
 U 1 1 56A3C36C
 P 5400 4650
 F 0 "U15" H 5400 5055 50  0000 C CNN
@@ -157,7 +196,7 @@ F 3 "" H 5400 4650 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device1:CP1 C42
+L CP1 C42
 U 1 1 56A3C3BF
 P 4800 4850
 F 0 "C42" H 4550 4900 50  0000 L CNN
@@ -168,7 +207,7 @@ F 3 "" H 4800 4850 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device1:C C43
+L C C43
 U 1 1 56A3C4B0
 P 6000 4850
 F 0 "C43" H 6115 4900 50  0000 L CNN
@@ -179,7 +218,7 @@ F 3 "" H 6000 4850 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device1:D_Small D28
+L D_Small D28
 U 1 1 56A3C505
 P 4500 4600
 F 0 "D28" H 4500 4407 50  0000 C CNN
@@ -190,7 +229,7 @@ F 3 "" V 4500 4600 50  0000 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L power1:+5V #PWR078
+L +5V #PWR078
 U 1 1 56A3C5A0
 P 4300 4400
 F 0 "#PWR078" H 4300 4250 50  0001 C CNN

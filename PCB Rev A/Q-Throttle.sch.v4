@@ -1,4 +1,43 @@
-EESchema Schematic File Version 4
+EESchema Schematic File Version 2
+LIBS:Q-Throttle-rescue
+LIBS:power
+LIBS:device
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:microchip_pic16mcu
+LIBS:ir
+LIBS:ir2102
+LIBS:lm2576-5
+LIBS:lm555cn
+LIBS:lm2677-12
+LIBS:xbee_s1
+LIBS:74cb3t1g125
+LIBS:74ls125
 LIBS:Q-Throttle-cache
 EELAYER 26 0
 EELAYER END
@@ -15,7 +54,7 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L Q-Throttle-rescue:PIC16(L)F1516-I_SP-RESCUE-Q-Throttle U8
+L PIC16(L)F1516-I/SP U8
 U 1 1 564D4DB6
 P 6950 3750
 F 0 "U8" H 7150 4950 50  0000 L CNN
@@ -26,7 +65,7 @@ F 3 "" H 6950 3750 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device1:C_Small C16
+L C_Small C16
 U 1 1 564D4ED2
 P 4900 3750
 F 0 "C16" H 4700 3650 50  0000 L CNN
@@ -37,7 +76,7 @@ F 3 "" H 4900 3750 60  0000 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L power1:GND #PWR01
+L GND #PWR01
 U 1 1 564D4EFF
 P 4900 3850
 F 0 "#PWR01" H 4900 3600 50  0001 C CNN
@@ -48,7 +87,7 @@ F 3 "" H 4900 3850 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power1:GND #PWR02
+L GND #PWR02
 U 1 1 564D4F19
 P 6700 5000
 F 0 "#PWR02" H 6700 4750 50  0001 C CNN
@@ -59,7 +98,7 @@ F 3 "" H 6700 5000 60  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L power1:+5V #PWR03
+L +5V #PWR03
 U 1 1 564D4F33
 P 6950 2450
 F 0 "#PWR03" H 6950 2300 50  0001 C CNN
@@ -70,7 +109,7 @@ F 3 "" H 6950 2450 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device1:C_Small C21
+L C_Small C21
 U 1 1 564D4F51
 P 6650 2450
 F 0 "C21" H 6660 2520 50  0000 L CNN
@@ -81,7 +120,7 @@ F 3 "" H 6650 2450 60  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L power1:GND #PWR04
+L GND #PWR04
 U 1 1 564D4FC5
 P 6350 2500
 F 0 "#PWR04" H 6350 2250 50  0001 C CNN
@@ -98,7 +137,7 @@ F0 "Power Section" 60
 F1 "PowerSection.sch" 60
 $EndSheet
 $Comp
-L device1:D_Schottky D1
+L D_Schottky D1
 U 1 1 566481D7
 P 1850 6600
 F 0 "D1" H 1850 6700 50  0000 C CNN
@@ -109,7 +148,7 @@ F 3 "" H 1850 6600 60  0000 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L device1:D_Schottky D2
+L D_Schottky D2
 U 1 1 56648271
 P 1850 6900
 F 0 "D2" H 1850 6800 50  0000 C CNN
@@ -120,7 +159,7 @@ F 3 "" H 1850 6900 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device1:D_Schottky D4
+L D_Schottky D4
 U 1 1 566482CE
 P 1850 7500
 F 0 "D4" H 1850 7600 50  0000 C CNN
@@ -131,7 +170,7 @@ F 3 "" H 1850 7500 60  0000 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L device1:D_Schottky D5
+L D_Schottky D5
 U 1 1 56648311
 P 5400 7300
 F 0 "D5" H 5400 7400 50  0000 C CNN
@@ -142,7 +181,7 @@ F 3 "" H 5400 7300 60  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L device1:D_Schottky D7
+L D_Schottky D7
 U 1 1 5664837B
 P 8150 6350
 F 0 "D7" H 8150 6450 50  0000 C CNN
@@ -153,7 +192,7 @@ F 3 "" H 8150 6350 60  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L device1:CP1_Small C5
+L CP1_Small C5
 U 1 1 5664879F
 P 2650 6750
 F 0 "C5" H 2660 6820 50  0000 L CNN
@@ -164,7 +203,7 @@ F 3 "" H 2650 6750 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device1:CP1_Small C7
+L CP1_Small C7
 U 1 1 566487D2
 P 2800 6750
 F 0 "C7" H 2810 6820 50  0000 L CNN
@@ -175,7 +214,7 @@ F 3 "" H 2800 6750 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device1:CP1_Small C8
+L CP1_Small C8
 U 1 1 56648807
 P 2950 6750
 F 0 "C8" H 2960 6820 50  0000 L CNN
@@ -186,7 +225,7 @@ F 3 "" H 2950 6750 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device1:CP1_Small C11
+L CP1_Small C11
 U 1 1 5664883F
 P 3200 6750
 F 0 "C11" H 3210 6820 50  0000 L CNN
@@ -197,7 +236,7 @@ F 3 "" H 3200 6750 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device1:CP1_Small C19
+L CP1_Small C19
 U 1 1 56648877
 P 5800 7150
 F 0 "C19" H 5810 7220 50  0000 L CNN
@@ -208,7 +247,7 @@ F 3 "" H 5800 7150 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device1:CP1_Small C20
+L CP1_Small C20
 U 1 1 566488CE
 P 6000 7150
 F 0 "C20" H 6010 7220 50  0000 L CNN
@@ -219,7 +258,7 @@ F 3 "" H 6000 7150 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Q-Throttle-rescue:FUSE-RESCUE-Q-Throttle F1
+L FUSE F1
 U 1 1 56648914
 P 1250 7500
 F 0 "F1" H 1350 7550 50  0000 C CNN
@@ -230,7 +269,7 @@ F 3 "" H 1250 7500 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L interface1:SP3485CN U1
+L SP3485CN U1
 U 1 1 56648A5D
 P 1550 4800
 F 0 "U1" H 1250 5150 50  0000 L CNN
@@ -241,7 +280,7 @@ F 3 "" H 1550 4800 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Q-Throttle-rescue:INDUCTOR-RESCUE-Q-Throttle L1
+L INDUCTOR L1
 U 1 1 56648C21
 P 5700 6800
 F 0 "L1" V 5800 6700 50  0000 C CNN
@@ -252,7 +291,7 @@ F 3 "" H 5700 6800 60  0000 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L Q-Throttle-rescue:INDUCTOR-RESCUE-Q-Throttle L2
+L INDUCTOR L2
 U 1 1 56648C95
 P 8450 6100
 F 0 "L2" V 8400 6100 50  0000 C CNN
@@ -263,7 +302,7 @@ F 3 "" H 8450 6100 60  0000 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L device1:C_Small C17
+L C_Small C17
 U 1 1 56648E4F
 P 5200 6800
 F 0 "C17" V 5250 6850 50  0000 L CNN
@@ -274,7 +313,7 @@ F 3 "" H 5200 6800 60  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L device1:C_Small C26
+L C_Small C26
 U 1 1 56648F2E
 P 9450 6400
 F 0 "C26" H 9460 6470 50  0000 L CNN
@@ -285,7 +324,7 @@ F 3 "" H 9450 6400 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device1:CP1_Small C24
+L CP1_Small C24
 U 1 1 56648FAC
 P 8750 6300
 F 0 "C24" H 8760 6370 50  0000 L CNN
@@ -296,7 +335,7 @@ F 3 "" H 8750 6300 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device1:R R15
+L R R15
 U 1 1 566490A1
 P 6600 6250
 F 0 "R15" V 6680 6250 50  0000 C CNN
@@ -307,7 +346,7 @@ F 3 "" H 6600 6250 30  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device1:R R22
+L R R22
 U 1 1 566492D8
 P 8950 6350
 F 0 "R22" V 9030 6350 50  0000 C CNN
@@ -318,7 +357,7 @@ F 3 "" H 8950 6350 30  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device1:R R26
+L R R26
 U 1 1 5664941B
 P 9250 6350
 F 0 "R26" V 9330 6350 50  0000 C CNN
@@ -329,7 +368,7 @@ F 3 "" H 9250 6350 30  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device1:R R14
+L R R14
 U 1 1 566494B5
 P 6350 5950
 F 0 "R14" V 6430 5950 50  0000 C CNN
@@ -340,7 +379,7 @@ F 3 "" H 6350 5950 30  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L device1:R R16
+L R R16
 U 1 1 5664957D
 P 7300 5750
 F 0 "R16" V 7380 5750 50  0000 C CNN
@@ -351,7 +390,7 @@ F 3 "" H 7300 5750 30  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L device1:R R17
+L R R17
 U 1 1 566495F9
 P 7750 5750
 F 0 "R17" V 7830 5750 50  0000 C CNN
@@ -362,7 +401,7 @@ F 3 "" H 7750 5750 30  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L device1:R R24
+L R R24
 U 1 1 56649686
 P 9100 6100
 F 0 "R24" V 9200 6100 50  0000 C CNN
@@ -373,7 +412,7 @@ F 3 "" H 9100 6100 30  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Q-Throttle-rescue:POT-RESCUE-Q-Throttle RV1
+L POT-RESCUE-Q-Throttle RV1
 U 1 1 5664977D
 P 5450 6600
 F 0 "RV1" H 5450 6500 50  0000 C CNN
@@ -384,7 +423,7 @@ F 3 "" H 5450 6600 60  0000 C CNN
 	-1   0    0    -1  
 $EndComp
 $Comp
-L device1:C_Small C2
+L C_Small C2
 U 1 1 5664A7C3
 P 1400 2950
 F 0 "C2" H 1410 3020 50  0000 L CNN
@@ -395,7 +434,7 @@ F 3 "" H 1400 2950 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device1:R R2
+L R R2
 U 1 1 5664A8D0
 P 1200 3000
 F 0 "R2" V 1280 3000 50  0000 C CNN
@@ -406,7 +445,7 @@ F 3 "" H 1200 3000 30  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device1:R R7
+L R R7
 U 1 1 5664AC2A
 P 3050 1800
 F 0 "R7" V 3130 1800 50  0000 C CNN
@@ -417,7 +456,7 @@ F 3 "" H 3050 1800 30  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device1:C_Small C12
+L C_Small C12
 U 1 1 5664ACDB
 P 3250 1750
 F 0 "C12" H 3260 1820 50  0000 L CNN
@@ -428,7 +467,7 @@ F 3 "" H 3250 1750 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device1:R R1
+L R R1
 U 1 1 5664AEA1
 P 1050 1850
 F 0 "R1" V 1130 1850 50  0000 C CNN
@@ -439,7 +478,7 @@ F 3 "" H 1050 1850 30  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device1:C_Small C1
+L C_Small C1
 U 1 1 5664AF5E
 P 1250 1800
 F 0 "C1" H 1260 1870 50  0000 L CNN
@@ -450,7 +489,7 @@ F 3 "" H 1250 1800 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device1:C_Small C13
+L C_Small C13
 U 1 1 5664AFF8
 P 3250 2900
 F 0 "C13" H 3260 2970 50  0000 L CNN
@@ -461,7 +500,7 @@ F 3 "" H 3250 2900 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device1:R R8
+L R R8
 U 1 1 5664B10D
 P 3050 2950
 F 0 "R8" V 3130 2950 50  0000 C CNN
@@ -472,7 +511,7 @@ F 3 "" H 3050 2950 30  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device1:R R6
+L R R6
 U 1 1 5664B2A3
 P 2750 2700
 F 0 "R6" V 2830 2700 50  0000 C CNN
@@ -483,7 +522,7 @@ F 3 "" H 2750 2700 30  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L device1:R R5
+L R R5
 U 1 1 5664B531
 P 2750 1500
 F 0 "R5" V 2830 1500 50  0000 C CNN
@@ -494,7 +533,7 @@ F 3 "" H 2750 1500 30  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L device1:R R3
+L R R3
 U 1 1 5664B8BE
 P 2700 3850
 F 0 "R3" V 2780 3850 50  0000 C CNN
@@ -505,7 +544,7 @@ F 3 "" H 2700 3850 30  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L device1:R R4
+L R R4
 U 1 1 5664B972
 P 2700 4050
 F 0 "R4" V 2780 4050 50  0000 C CNN
@@ -516,7 +555,7 @@ F 3 "" H 2700 4050 30  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L device1:R R9
+L R R9
 U 1 1 5664BD7D
 P 4950 950
 F 0 "R9" V 5030 950 50  0000 C CNN
@@ -527,7 +566,7 @@ F 3 "" H 4950 950 30  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L device1:R R12
+L R R12
 U 1 1 5664BE5A
 P 5450 950
 F 0 "R12" V 5530 950 50  0000 C CNN
@@ -538,7 +577,7 @@ F 3 "" H 5450 950 30  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L device1:R R13
+L R R13
 U 1 1 5664BEFD
 P 5950 950
 F 0 "R13" V 6030 950 50  0000 C CNN
@@ -549,7 +588,7 @@ F 3 "" H 5950 950 30  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L device1:CP1_Small C22
+L CP1_Small C22
 U 1 1 5664C6A0
 P 8100 1350
 F 0 "C22" H 8110 1420 50  0000 L CNN
@@ -560,7 +599,7 @@ F 3 "" H 8100 1350 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device1:R R18
+L R R18
 U 1 1 5664C85E
 P 7800 1400
 F 0 "R18" V 7880 1400 50  0000 C CNN
@@ -571,7 +610,7 @@ F 3 "" H 7800 1400 30  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device1:D D6
+L D D6
 U 1 1 5664C9B8
 P 7550 1200
 F 0 "D6" H 7550 1300 50  0000 C CNN
@@ -582,7 +621,7 @@ F 3 "" H 7550 1200 60  0000 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L device1:R R30
+L R R30
 U 1 1 5664D1F8
 P 9650 1000
 F 0 "R30" V 9730 1000 50  0000 C CNN
@@ -593,7 +632,7 @@ F 3 "" H 9650 1000 30  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L device1:R R25
+L R R25
 U 1 1 5664D2E2
 P 9200 2600
 F 0 "R25" V 9280 2600 50  0000 C CNN
@@ -604,7 +643,7 @@ F 3 "" H 9200 2600 30  0000 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L device1:R R28
+L R R28
 U 1 1 5664D3A6
 P 9400 2600
 F 0 "R28" V 9480 2600 50  0000 C CNN
@@ -615,7 +654,7 @@ F 3 "" H 9400 2600 30  0000 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L device1:R R31
+L R R31
 U 1 1 5664D700
 P 10050 4800
 F 0 "R31" V 10130 4800 50  0000 C CNN
@@ -626,7 +665,7 @@ F 3 "" H 10050 4800 30  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L device1:R R21
+L R R21
 U 1 1 5664D7EB
 P 8750 1850
 F 0 "R21" V 8830 1850 50  0000 C CNN
@@ -637,7 +676,7 @@ F 3 "" H 8750 1850 30  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Q-Throttle-rescue:POT-RESCUE-Q-Throttle RV2
+L POT-RESCUE-Q-Throttle RV2
 U 1 1 5664D958
 P 8750 2350
 F 0 "RV2" H 8750 2250 50  0000 C CNN
@@ -648,7 +687,7 @@ F 3 "" H 8750 2350 60  0000 C CNN
 	0    -1   1    0   
 $EndComp
 $Comp
-L device1:R R20
+L R R20
 U 1 1 5664E06E
 P 8650 3650
 F 0 "R20" V 8730 3650 50  0000 C CNN
@@ -659,7 +698,7 @@ F 3 "" H 8650 3650 30  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device1:LED D8
+L LED D8
 U 1 1 5664EC91
 P 9300 1000
 F 0 "D8" H 9300 1100 50  0000 C CNN
@@ -670,7 +709,7 @@ F 3 "" H 9300 1000 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device1:LED D9
+L LED D9
 U 1 1 5664F0F7
 P 9500 4800
 F 0 "D9" H 9500 4900 50  0000 C CNN
@@ -681,7 +720,7 @@ F 3 "" H 9500 4800 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Q-Throttle-rescue:SW_PUSH-RESCUE-Q-Throttle SW1
+L SW_PUSH SW1
 U 1 1 5664F593
 P 10000 4000
 F 0 "SW1" H 10150 4110 50  0000 C CNN
@@ -692,7 +731,7 @@ F 3 "" H 10000 4000 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device1:CP1 C4
+L CP1 C4
 U 1 1 5668C425
 P 2400 6800
 F 0 "C4" H 2425 6900 50  0000 L CNN
@@ -703,7 +742,7 @@ F 3 "" H 2400 6800 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Q-Throttle-rescue:LM358-RESCUE-Q-Throttle U7
+L LM358-RESCUE-Q-Throttle U7
 U 1 1 5668D5E5
 P 6900 1200
 F 0 "U7" H 6850 1400 60  0000 L CNN
@@ -714,7 +753,7 @@ F 3 "" H 6900 1200 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power1:GND #PWR05
+L GND #PWR05
 U 1 1 5668DA2A
 P 2400 7700
 F 0 "#PWR05" H 2400 7450 50  0001 C CNN
@@ -725,7 +764,7 @@ F 3 "" H 2400 7700 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Q-Throttle-rescue:CONN_01X08-RESCUE-Q-Throttle J1
+L CONN_01X08 J1
 U 1 1 5668E052
 P 1000 6650
 F 0 "J1" H 1000 7100 50  0000 C CNN
@@ -736,7 +775,7 @@ F 3 "" H 1000 6650 60  0000 C CNN
 	-1   0    0    -1  
 $EndComp
 $Comp
-L power1:GND #PWR06
+L GND #PWR06
 U 1 1 5668EF97
 P 2100 6200
 F 0 "#PWR06" H 2100 5950 50  0001 C CNN
@@ -747,7 +786,7 @@ F 3 "" H 2100 6200 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power1:GND #PWR07
+L GND #PWR07
 U 1 1 5668F5E6
 P 4200 7700
 F 0 "#PWR07" H 4200 7450 50  0001 C CNN
@@ -758,7 +797,7 @@ F 3 "" H 4200 7700 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power1:GND #PWR08
+L GND #PWR08
 U 1 1 566906D8
 P 6000 7650
 F 0 "#PWR08" H 6000 7400 50  0001 C CNN
@@ -769,7 +808,7 @@ F 3 "" H 6000 7650 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power1:+15V #PWR09
+L +15V #PWR09
 U 1 1 56690D6C
 P 6000 6350
 F 0 "#PWR09" H 6000 6200 50  0001 C CNN
@@ -780,7 +819,7 @@ F 3 "" H 6000 6350 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power1:+15V #PWR010
+L +15V #PWR010
 U 1 1 56690E61
 P 8150 5950
 F 0 "#PWR010" H 8150 5800 50  0001 C CNN
@@ -791,7 +830,7 @@ F 3 "" H 8150 5950 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power1:+24V #PWR011
+L +24V #PWR011
 U 1 1 56690F56
 P 2400 6400
 F 0 "#PWR011" H 2400 6250 50  0001 C CNN
@@ -802,7 +841,7 @@ F 3 "" H 2400 6400 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Q-Throttle-rescue:CONN_01X06-RESCUE-Q-Throttle J2
+L CONN_01X06 J2
 U 1 1 56693E9E
 P 3050 5150
 F 0 "J2" H 3050 5500 50  0000 C CNN
@@ -813,7 +852,7 @@ F 3 "" H 3050 5150 60  0000 C CNN
 	1    0    0    1   
 $EndComp
 $Comp
-L power1:GND #PWR012
+L GND #PWR012
 U 1 1 5669489D
 P 2000 5300
 F 0 "#PWR012" H 2000 5050 50  0001 C CNN
@@ -824,7 +863,7 @@ F 3 "" H 2000 5300 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power1:GND #PWR013
+L GND #PWR013
 U 1 1 56694A29
 P 2250 4100
 F 0 "#PWR013" H 2250 3850 50  0001 C CNN
@@ -835,7 +874,7 @@ F 3 "" H 2250 4100 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power1:+5V #PWR014
+L +5V #PWR014
 U 1 1 566956E9
 P 1550 4200
 F 0 "#PWR014" H 1550 4050 50  0001 C CNN
@@ -846,7 +885,7 @@ F 3 "" H 1550 4200 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Q-Throttle-rescue:LM358-RESCUE-Q-Throttle U2
+L LM358-RESCUE-Q-Throttle U2
 U 1 1 56695B31
 P 2000 1500
 F 0 "U2" H 1950 1700 60  0000 L CNN
@@ -857,7 +896,7 @@ F 3 "" H 2000 1500 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power1:+15V #PWR015
+L +15V #PWR015
 U 1 1 5669825E
 P 1900 950
 F 0 "#PWR015" H 1900 800 50  0001 C CNN
@@ -868,7 +907,7 @@ F 3 "" H 1900 950 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device1:R R19
+L R R19
 U 1 1 5669A216
 P 8600 5150
 F 0 "R19" V 8680 5150 50  0000 C CNN
@@ -879,7 +918,7 @@ F 3 "" H 8600 5150 30  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power1:GND #PWR016
+L GND #PWR016
 U 1 1 5669A650
 P 9050 5300
 F 0 "#PWR016" H 9050 5050 50  0001 C CNN
@@ -890,7 +929,7 @@ F 3 "" H 9050 5300 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power1:GND #PWR017
+L GND #PWR017
 U 1 1 5668BF50
 P 7800 1600
 F 0 "#PWR017" H 7800 1350 50  0001 C CNN
@@ -901,7 +940,7 @@ F 3 "" H 7800 1600 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power1:+5V #PWR018
+L +5V #PWR018
 U 1 1 5668C1E3
 P 6100 800
 F 0 "#PWR018" H 6100 650 50  0001 C CNN
@@ -912,7 +951,7 @@ F 3 "" H 6100 800 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power1:+5V #PWR019
+L +5V #PWR019
 U 1 1 5668C41E
 P 9800 800
 F 0 "#PWR019" H 9800 650 50  0001 C CNN
@@ -927,7 +966,7 @@ SHORT
 Text Notes 9600 5000 0    50   ~ 0
 SYS LED
 $Comp
-L power1:GND #PWR020
+L GND #PWR020
 U 1 1 5668E0C2
 P 9300 4250
 F 0 "#PWR020" H 9300 4000 50  0001 C CNN
@@ -938,7 +977,7 @@ F 3 "" H 9300 4250 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power1:+5V #PWR021
+L +5V #PWR021
 U 1 1 5668E35C
 P 8650 3500
 F 0 "#PWR021" H 8650 3350 50  0001 C CNN
@@ -949,7 +988,7 @@ F 3 "" H 8650 3500 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Q-Throttle-rescue:CONN_01X05-RESCUE-Q-Throttle J3
+L CONN_01X05 J3
 U 1 1 5668E80F
 P 4400 1150
 F 0 "J3" H 4400 1450 50  0000 C CNN
@@ -960,7 +999,7 @@ F 3 "" H 4400 1150 60  0000 C CNN
 	-1   0    0    -1  
 $EndComp
 $Comp
-L power1:GND #PWR022
+L GND #PWR022
 U 1 1 5668F350
 P 5700 1300
 F 0 "#PWR022" H 5700 1050 50  0001 C CNN
@@ -971,7 +1010,7 @@ F 3 "" H 5700 1300 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power1:+5V #PWR023
+L +5V #PWR023
 U 1 1 5668F5A2
 P 6800 800
 F 0 "#PWR023" H 6800 650 50  0001 C CNN
@@ -982,7 +1021,7 @@ F 3 "" H 6800 800 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power1:+5V #PWR024
+L +5V #PWR024
 U 1 1 5668F9A3
 P 4600 800
 F 0 "#PWR024" H 4600 650 50  0001 C CNN
@@ -1001,7 +1040,7 @@ SYS LED A
 Text Notes 9800 3200 0    50   ~ 0
 SYS LED C
 $Comp
-L power1:GND #PWR025
+L GND #PWR025
 U 1 1 56692886
 P 8750 2950
 F 0 "#PWR025" H 8750 2700 50  0001 C CNN
@@ -1012,7 +1051,7 @@ F 3 "" H 8750 2950 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power1:+5V #PWR026
+L +5V #PWR026
 U 1 1 56693EF5
 P 9400 2300
 F 0 "#PWR026" H 9400 2150 50  0001 C CNN
@@ -1023,7 +1062,7 @@ F 3 "" H 9400 2300 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power1:+5V #PWR027
+L +5V #PWR027
 U 1 1 56693FF9
 P 8750 1700
 F 0 "#PWR027" H 8750 1550 50  0001 C CNN
@@ -1034,7 +1073,7 @@ F 3 "" H 8750 1700 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L memory1:FM24C64B U5
+L FM24C64B U5
 U 1 1 56697F8F
 P 4400 2450
 F 0 "U5" H 4200 2700 50  0000 C CNN
@@ -1045,7 +1084,7 @@ F 3 "" H 4400 2450 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Q-Throttle-rescue:LM358-RESCUE-Q-Throttle U2
+L LM358-RESCUE-Q-Throttle U2
 U 2 1 56698497
 P 2000 2700
 F 0 "U2" H 1950 2500 60  0000 L CNN
@@ -1056,7 +1095,7 @@ F 3 "" H 2000 2700 60  0000 C CNN
 	1    0    0    1   
 $EndComp
 $Comp
-L lm2677-12:LM2677-12 U4
+L LM2677-12 U4
 U 1 1 56698C35
 P 4200 6900
 F 0 "U4" H 4200 7350 60  0000 C CNN
@@ -1067,7 +1106,7 @@ F 3 "" H 4200 6900 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device1:Q_PMOS_GDS Q3
+L Q_PMOS_GDS Q3
 U 1 1 56698F65
 P 7650 6250
 F 0 "Q3" H 7650 6100 50  0000 R CNN
@@ -1080,7 +1119,7 @@ $EndComp
 Text GLabel 8900 5800 2    60   Output ~ 0
 M+
 $Comp
-L power1:+5V #PWR028
+L +5V #PWR028
 U 1 1 5669B436
 P 10200 4800
 F 0 "#PWR028" H 10200 4650 50  0001 C CNN
@@ -1091,7 +1130,7 @@ F 3 "" H 10200 4800 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device1:C_Small C3
+L C_Small C3
 U 1 1 566A0CCB
 P 2000 5200
 F 0 "C3" H 2010 5270 50  0000 L CNN
@@ -1102,7 +1141,7 @@ F 3 "" H 2000 5200 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power1:GND #PWR029
+L GND #PWR029
 U 1 1 566A1504
 P 2750 4650
 F 0 "#PWR029" H 2750 4400 50  0001 C CNN
@@ -1113,7 +1152,7 @@ F 3 "" H 2750 4650 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power1:+15V #PWR030
+L +15V #PWR030
 U 1 1 566A31A0
 P 1300 6200
 F 0 "#PWR030" H 1300 6050 50  0001 C CNN
@@ -1144,7 +1183,7 @@ LeftRail
 Text GLabel 1200 6800 2    50   Input ~ 0
 RightRail
 $Comp
-L device1:C_Small C18
+L C_Small C18
 U 1 1 566A769E
 P 5700 1200
 F 0 "C18" H 5710 1270 50  0000 L CNN
@@ -1163,7 +1202,7 @@ CW
 Text Notes 4800 6300 0    50   ~ 0
 Max or DCC volt Adjust\n        12-16v
 $Comp
-L device1:R R10
+L R R10
 U 1 1 566C6272
 P 5200 2050
 F 0 "R10" V 5280 2050 50  0000 C CNN
@@ -1174,7 +1213,7 @@ F 3 "" H 5200 2050 30  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device1:R R11
+L R R11
 U 1 1 566C63B1
 P 5400 2050
 F 0 "R11" V 5480 2050 50  0000 C CNN
@@ -1185,7 +1224,7 @@ F 3 "" H 5400 2050 30  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power1:+5V #PWR031
+L +5V #PWR031
 U 1 1 566C670E
 P 5200 1900
 F 0 "#PWR031" H 5200 1750 50  0001 C CNN
@@ -1196,7 +1235,7 @@ F 3 "" H 5200 1900 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power1:+5V #PWR032
+L +5V #PWR032
 U 1 1 566C71BE
 P 4400 2100
 F 0 "#PWR032" H 4400 1950 50  0001 C CNN
@@ -1207,7 +1246,7 @@ F 3 "" H 4400 2100 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power1:GND #PWR033
+L GND #PWR033
 U 1 1 566C72CE
 P 4400 2850
 F 0 "#PWR033" H 4400 2600 50  0001 C CNN
@@ -1234,7 +1273,7 @@ Send/Receive*
 Text Notes 1800 3850 0    50   ~ 0
 DE/RE*
 $Comp
-L power1:+15V #PWR034
+L +15V #PWR034
 U 1 1 566C89B6
 P 2550 5500
 F 0 "#PWR034" H 2550 5350 50  0001 C CNN
@@ -1245,7 +1284,7 @@ F 3 "" H 2550 5500 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device1:C_Small C10
+L C_Small C10
 U 1 1 566CC182
 P 3200 900
 F 0 "C10" H 3210 970 50  0000 L CNN
@@ -1256,7 +1295,7 @@ F 3 "" H 3200 900 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power1:GND #PWR035
+L GND #PWR035
 U 1 1 566CC2B1
 P 3200 1100
 F 0 "#PWR035" H 3200 850 50  0001 C CNN
@@ -1267,7 +1306,7 @@ F 3 "" H 3200 1100 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power1:+5V #PWR036
+L +5V #PWR036
 U 1 1 566CC3C4
 P 3200 800
 F 0 "#PWR036" H 3200 650 50  0001 C CNN
@@ -1278,7 +1317,7 @@ F 3 "" H 3200 800 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power1:+5V #PWR037
+L +5V #PWR037
 U 1 1 566CCEAA
 P 3000 800
 F 0 "#PWR037" H 3000 650 50  0001 C CNN
@@ -1289,7 +1328,7 @@ F 3 "" H 3000 800 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power1:+5V #PWR038
+L +5V #PWR038
 U 1 1 566CD0D0
 P 3400 800
 F 0 "#PWR038" H 3400 650 50  0001 C CNN
@@ -1300,7 +1339,7 @@ F 3 "" H 3400 800 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device1:C_Small C6
+L C_Small C6
 U 1 1 566CD409
 P 2750 1050
 F 0 "C6" H 2760 1120 50  0000 L CNN
@@ -1311,7 +1350,7 @@ F 3 "" H 2750 1050 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device1:C_Small C9
+L C_Small C9
 U 1 1 566CD52A
 P 3000 900
 F 0 "C9" H 3010 970 50  0000 L CNN
@@ -1322,7 +1361,7 @@ F 3 "" H 3000 900 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device1:C_Small C14
+L C_Small C14
 U 1 1 566CD6A4
 P 3400 900
 F 0 "C14" H 3410 970 50  0000 L CNN
@@ -1333,7 +1372,7 @@ F 3 "" H 3400 900 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device1:C_Small C15
+L C_Small C15
 U 1 1 566CD7C5
 P 3700 900
 F 0 "C15" H 3710 970 50  0000 L CNN
@@ -1344,7 +1383,7 @@ F 3 "" H 3700 900 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power1:GND #PWR039
+L GND #PWR039
 U 1 1 566CDB87
 P 3000 1100
 F 0 "#PWR039" H 3000 850 50  0001 C CNN
@@ -1355,7 +1394,7 @@ F 3 "" H 3000 1100 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power1:GND #PWR040
+L GND #PWR040
 U 1 1 566CDCA9
 P 2750 1200
 F 0 "#PWR040" H 2750 950 50  0001 C CNN
@@ -1366,7 +1405,7 @@ F 3 "" H 2750 1200 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power1:GND #PWR041
+L GND #PWR041
 U 1 1 566CDDCB
 P 3400 1100
 F 0 "#PWR041" H 3400 850 50  0001 C CNN
@@ -1377,7 +1416,7 @@ F 3 "" H 3400 1100 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power1:GND #PWR042
+L GND #PWR042
 U 1 1 566CDEED
 P 3700 1100
 F 0 "#PWR042" H 3700 850 50  0001 C CNN
@@ -1404,7 +1443,7 @@ Text Notes 850  2750 0    50   ~ 0
 Text Notes 1050 1300 0    50   ~ 0
 0-15v Hi-Z Input
 $Comp
-L device1:D_Schottky D3
+L D_Schottky D3
 U 1 1 5671E23D
 P 1850 7200
 F 0 "D3" H 1850 7100 50  0000 C CNN
@@ -1415,7 +1454,7 @@ F 3 "" H 1850 7200 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power1:GND #PWR043
+L GND #PWR043
 U 1 1 567255BC
 P 1250 2100
 F 0 "#PWR043" H 1250 1850 50  0001 C CNN
@@ -1426,7 +1465,7 @@ F 3 "" H 1250 2100 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power1:GND #PWR044
+L GND #PWR044
 U 1 1 567256DB
 P 1400 3200
 F 0 "#PWR044" H 1400 2950 50  0001 C CNN
@@ -1437,7 +1476,7 @@ F 3 "" H 1400 3200 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device1:Q_NMOS_SGD Q1
+L Q_NMOS_SGD Q1
 U 1 1 56729C90
 P 2850 4450
 F 0 "Q1" H 3044 4500 50  0000 L CNN
@@ -1448,7 +1487,7 @@ F 3 "" H 2850 4450 60  0000 C CNN
 	-1   0    0    -1  
 $EndComp
 $Comp
-L device1:Q_NMOS_SGD Q2
+L Q_NMOS_SGD Q2
 U 1 1 56729F70
 P 6900 5950
 F 0 "Q2" H 7200 6000 50  0000 R CNN
@@ -1459,7 +1498,7 @@ F 3 "" H 6900 5950 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device1:Q_NMOS_SGD Q6
+L Q_NMOS_SGD Q6
 U 1 1 5672AA26
 P 8950 5000
 F 0 "Q6" H 9250 5050 50  0000 R CNN
@@ -1470,7 +1509,7 @@ F 3 "" H 8950 5000 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device1:Q_NMOS_SGD Q4
+L Q_NMOS_SGD Q4
 U 1 1 5672AE53
 P 8500 1200
 F 0 "Q4" H 8800 1250 50  0000 R CNN
@@ -2050,7 +2089,7 @@ Wire Wire Line
 Wire Wire Line
 	5600 5850 5600 5400
 $Comp
-L device1:Q_NMOS_SGD Q5
+L Q_NMOS_SGD Q5
 U 1 1 56854EB5
 P 8750 4000
 F 0 "Q5" H 8750 3850 50  0000 R CNN
@@ -2063,7 +2102,7 @@ $EndComp
 Wire Wire Line
 	8500 2950 8500 3800
 $Comp
-L device1:R R27
+L R R27
 U 1 1 56855EA2
 P 9300 3850
 F 0 "R27" V 9380 3850 50  0000 C CNN
@@ -2074,7 +2113,7 @@ F 3 "" H 9300 3850 30  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device1:R R23
+L R R23
 U 1 1 56855FFC
 P 9100 4000
 F 0 "R23" V 9180 4000 50  0000 C CNN
@@ -2085,7 +2124,7 @@ F 3 "" H 9100 4000 30  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L device1:R R29
+L R R29
 U 1 1 56856AEC
 P 9500 4000
 F 0 "R29" V 9580 4000 50  0000 C CNN
@@ -2103,7 +2142,7 @@ Connection ~ 9300 4000
 Wire Wire Line
 	9300 4000 9300 4050
 $Comp
-L power1:+5V #PWR045
+L +5V #PWR045
 U 1 1 56858441
 P 9300 3700
 F 0 "#PWR045" H 9300 3550 50  0001 C CNN
@@ -2114,7 +2153,7 @@ F 3 "" H 9300 3700 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power1:GND #PWR046
+L GND #PWR046
 U 1 1 568586CC
 P 8650 4200
 F 0 "#PWR046" H 8650 3950 50  0001 C CNN
@@ -2125,7 +2164,7 @@ F 3 "" H 8650 4200 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power1:GND #PWR047
+L GND #PWR047
 U 1 1 568588E4
 P 10300 4000
 F 0 "#PWR047" H 10300 3750 50  0001 C CNN
@@ -2138,7 +2177,7 @@ $EndComp
 Text Notes 9700 4350 0    60   ~ 0
 ADC/DCC\nSelect
 $Comp
-L device1:C_Small C25
+L C_Small C25
 U 1 1 5685A4EB
 P 9300 4150
 F 0 "C25" H 9150 4050 50  0000 L CNN
@@ -2149,7 +2188,7 @@ F 3 "" H 9300 4150 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Q-Throttle-rescue:CONN_01X06-RESCUE-Q-Throttle J4
+L CONN_01X06 J4
 U 1 1 5685B437
 P 9700 3150
 F 0 "J4" H 9650 3500 50  0000 L CNN
@@ -2170,7 +2209,7 @@ Wire Wire Line
 Wire Wire Line
 	9400 3300 9500 3300
 $Comp
-L power1:GND #PWR048
+L GND #PWR048
 U 1 1 5685C67C
 P 9500 3400
 F 0 "#PWR048" H 9500 3150 50  0001 C CNN
@@ -2192,7 +2231,7 @@ Wire Wire Line
 	9250 4650 9250 4800
 Connection ~ 9250 4800
 $Comp
-L device1:C_Small C23
+L C_Small C23
 U 1 1 56882B9A
 P 8600 2750
 F 0 "C23" H 8450 2650 50  0000 L CNN
@@ -2253,7 +2292,7 @@ Wire Wire Line
 	7800 1550 7800 1600
 Connection ~ 7800 1600
 $Comp
-L Q-Throttle-rescue:74HCT04-RESCUE-Q-Throttle U6
+L 74HCT04 U6
 U 1 1 56A41C3F
 P 4750 5650
 F 0 "U6" H 4900 5550 50  0000 C CNN
@@ -2337,7 +2376,7 @@ Wire Wire Line
 	8400 5000 8750 5000
 Connection ~ 8600 5000
 $Comp
-L power1:GND #PWR049
+L GND #PWR049
 U 1 1 56A992D3
 P 6800 6500
 F 0 "#PWR049" H 6800 6250 50  0001 C CNN
@@ -2365,7 +2404,7 @@ Wire Wire Line
 Connection ~ 7000 6500
 Connection ~ 6800 6500
 $Comp
-L power1:+3.3V #PWR050
+L +3.3V #PWR050
 U 1 1 56B65104
 P 3700 800
 F 0 "#PWR050" H 3700 650 50  0001 C CNN
@@ -2376,7 +2415,7 @@ F 3 "" H 3700 800 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Q-Throttle-rescue:74LS125_(3V3)-RESCUE-Q-Throttle U3
+L 74LS125_(3V3) U3
 U 1 1 56CE6E4E
 P 3950 3800
 F 0 "U3" H 4100 4000 50  0000 C CNN
@@ -2387,7 +2426,7 @@ F 3 "" H 3950 3800 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Q-Throttle-rescue:74LS125_(3V3)-RESCUE-Q-Throttle U3
+L 74LS125_(3V3) U3
 U 2 1 56CE6F52
 P 3950 4300
 F 0 "U3" H 3450 4500 50  0000 C CNN
@@ -2398,7 +2437,7 @@ F 3 "" H 3950 4300 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Q-Throttle-rescue:74LS125_(3V3)-RESCUE-Q-Throttle U3
+L 74LS125_(3V3) U3
 U 3 1 56CE7043
 P 3950 4800
 F 0 "U3" H 4100 4900 50  0000 C CNN
@@ -2409,7 +2448,7 @@ F 3 "" H 3950 4800 50  0000 C CNN
 	-1   0    0    -1  
 $EndComp
 $Comp
-L Q-Throttle-rescue:74LS125_(3V3)-RESCUE-Q-Throttle U3
+L 74LS125_(3V3) U3
 U 4 1 56CE7139
 P 3950 5300
 F 0 "U3" H 4100 5400 50  0000 C CNN

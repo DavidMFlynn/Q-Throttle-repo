@@ -59,7 +59,7 @@
 ;====================================================================================================
 ;
 ;
-	list	p=16f1938,r=hex,W=0	; list directive to define processor
+	list	p=16f1938,r=hex,W=1	; list directive to define processor
 	nolist
 	include	p16f1938.inc	; processor specific variable definitions
 	list
@@ -97,10 +97,16 @@
 ;
 #Define	_C	STATUS,C
 #Define	_Z	STATUS,Z
+DefaultVolts	EQU	0x40
+;
 ;====================================================================================================
 	nolist
 	include	F1938_Macros.inc
 	list
+;
+CCPCON_Clr	EQU	b'00001001'
+CCPCON_Set	EQU	b'00001000'
+CCPCON_Idle	EQU	b'00001010'
 ;
 ADCON1_Value	EQU	b'11110011'	;Right Justify, Frc clock,
 			; FVR & Vss Vref
@@ -258,25 +264,22 @@ DebounceTime	EQU	d'10'
 	cblock	0xA0
 ;
 ;Analog data
-	BatteryVolts:2		;AN0
-	InputCurrent:2		;AN1
-	BatteryCurrent:2		;AN2
-	MotorVolts:2		;AN3
-	PWMVolts:2		;AN4
+	OutputVolts:2		;AN0
+	MaxCurrentPot:2		;AN1
+	OutputCurrent:2		;AN2
+	VRefVolts:2		;AN4
 	IntCount		;Integrator Count
 	RawAN0:2
 	RawAN1:2
 	RawAN2:2
-	RawAN3:2
 	RawAN4:2
 	IntAN0:2
 	IntAN1:2
 	IntAN2:2
-	IntAN3:2
 	IntAN4:2
 	CurrentADC		;0..LastADC
 	ADCFlags
-	TargetBVolts:2
+	TargetVolts:2
 ;
 	endc
 ;
@@ -406,8 +409,8 @@ nvSysFlags;	RES	1
 ;  DisplayOrPut	Send W to serial out buffer.
 ; Disp_Hex_Byte	(1+2) Send a byte to the serial out buffer as 2 hex digits
 ;  Disp_Hex_Nibble	(1+1) Send a nibble to the serial out buffer as a hex digit
-; AdjustPWM	(0) Battery voltage control.
-; ReadAnalogInputs	(1+0) Read the 5 analog inputs in rotation.
+; AdjustPWM	(0) 
+; ReadAnalogInputs	(1+0) Read the analog inputs in rotation.
 ;
 ;=========================================================================================
 ;=========================================================================================
@@ -485,6 +488,7 @@ IRQ_Ser_End:
 ISR_PWM_End:
 ;
 ;-----------------------------------------------------------------
+	if oldCode
 ;
 ; Handle CCP1 Interupt Flag, Enter w/ bank 0 selected
 ;
@@ -529,96 +533,17 @@ IRQ_Servo1_OL	MOVF	CalcdDwell,W
 IRQ_Servo1_X	MOVLB	0x00
 	
 IRQ_Servo1_End:
+	endif
 ;-----------------------------------------------------------------
 ;
 	retfie		; return from interrupt
 ;
 ;==============================================================================================
 ; Called 100 times per second
-PeriodMask	EQU	0x7F
 ;
-OnTheTick	INCF	LEDYPeriodCount,F
-	INCF	LEDRPeriodCount,F
-; Yellow LED
-	BTFSC	YellowLEDSensor	;Active?
-	bra	OnTheTick_YOff	; No
+OnTheTick:
 ;
-	BTFSC	OldYelLED	;Was On?
-	bra	OnTheTick_YOn	; Yes
-;
-	BSF	OldYelLED
-	movlw	0x01
-	movwf	LEDYPeriodCount	; No, it just turned on
-	movf	LDI8_YelDuty,W
-	movwf	YelDuty
-	clrf	LDI8_YelDuty
-;
-OnTheTick_YOn	incf	LDI8_YelDuty,W
-	SKPZ		;=255?
-	incf	LDI8_YelDuty,F	; No, increment it.
-;
-	movf	LEDYPeriodCount,W
-	andlw	PeriodMask	;128 ticks / period
-	SKPZ		;End of a period?
-	bra	OnTheTick_2	; No
-	movf	LDI8_YelDuty,W	; Yes, copy on time
-	movwf	YelDuty
-	bra	OnTheTick_2
-;
-OnTheTick_YOff	btfss	OldYelLED	;Just went off?
-	bra	OnTheTick_YOff_1	; No
-	movf	LDI8_YelDuty,W	; Yes, copy on time
-	movwf	YelDuty	
-;	
-OnTheTick_YOff_1	BCF	OldYelLED
-	movf	LEDYPeriodCount,W
-	andlw	PeriodMask	;128 ticks / period
-	SKPZ		;Has it been 256 since turn on?
-	bra	OnTheTick_2
-	movf	LDI8_YelDuty,W	; Yes, copy on time
-	movwf	YelDuty	
-	clrf	LDI8_YelDuty	; Yes
-; Red LED
-OnTheTick_2	BTFSC	RedLEDSensor	;Active?
-	bra	OnTheTick_ROff	; No
-;
-	BTFSC	OldRedLED	;Was On?
-	bra	OnTheTick_ROn	; Yes
-;
-	BSF	OldRedLED
-	movlw	0x01
-	movwf	LEDRPeriodCount	; No, it just turned on
-	movf	LDI9_RedDuty,W
-	movwf	RedDuty
-	clrf	LDI9_RedDuty
-;
-OnTheTick_ROn	incf	LDI9_RedDuty,W
-	SKPZ		;=255?
-	incf	LDI9_RedDuty,F	; No, increment it.
-;
-	movf	LEDRPeriodCount,W
-	andlw	PeriodMask	;128 ticks / period
-	SKPZ		;End of a period?
-	bra	OnTheTick_3	; No
-	movf	LDI9_RedDuty,W	; Yes, copy on time
-	movwf	RedDuty
-	bra	OnTheTick_3
-;
-OnTheTick_ROff	btfss	OldRedLED	;Just went off?
-	bra	OnTheTick_ROff_1	; No
-	movf	LDI9_RedDuty,W	; Yes, copy on time
-	movwf	RedDuty		
-;	
-OnTheTick_ROff_1	BCF	OldRedLED
-	movf	LEDRPeriodCount,W
-	andlw	PeriodMask	;128 ticks / period
-	SKPZ		;Has it been 256 since turn on?
-	bra	OnTheTick_3
-	movf	LDI9_RedDuty,W	; Yes, copy on time
-	movwf	RedDuty		
-	clrf	LDI9_RedDuty	; Yes
-;
-OnTheTick_3	return
+	return
 ;
 ;==============================================================================================
 ;==============================================================================================
@@ -698,7 +623,7 @@ PR2_Value	EQU	.125
 	CALL	ClearRam
 ;
 ;==============================
-; setup CCP1 for PWM
+; setup CCP2 for PWM
 ;
 CCP1CON_Value	equ	b'00001100'	;PWM mode
 ;
@@ -718,15 +643,16 @@ CCP1CON_Value	equ	b'00001100'	;PWM mode
 	MOVWF	PR4
 ; default to the highest volt setting
 	MOVLB	1	;Bank 1
-	MOVLW	low HighVolts
-	MOVWF	TargetBVolts
-	MOVLW	high HighVolts
-	MOVWF	TargetBVolts+1
+	MOVLW	low DefaultVolts
+	MOVWF	TargetVolts
+	MOVLW	high DefaultVolts
+	MOVWF	TargetVolts+1
 
 ;	BSF	PIE1,CCP1IE	;not used in PWM mode
 	BSF	PIE3,TMR4IE	;may be used to sync updates
 			; one update per duty cycle
 ;============================
+	if oldCode
 ; setup CCP2 for compare pulse output for R/C Servo
 ;
 	BANKSEL	SigOutTime	;Bank 5
@@ -737,8 +663,10 @@ CCP1CON_Value	equ	b'00001100'	;PWM mode
 	MOVLW	CCPCON_Set
 	MOVWF	CCP2CON
 	MOVLB	0x01	;Bank 1
-	bsf	PIE2,CCP2IE		
+	bsf	PIE2,CCP2IE
+	endif	
 ;
+;=========================================
 ;
 	MOVLB	0x00	;Bank 0
 ; setup data ports
@@ -1075,10 +1003,10 @@ AdjustPWM	MOVLB	0	;Bank 0
 ;Param79:Param78=BatteryVolts-TargetBVolts
 ;TargetBVolts=LowVolts=.800
 ;PWMVolts=0..1023=0..20v
-	MOVF	TargetBVolts,W
+	MOVF	TargetVolts,W
 	SUBWF	RawAN4,W
 	MOVWF	Param78
-	MOVF	TargetBVolts+1,W
+	MOVF	TargetVolts+1,W
 	SUBWFB	RawAN4+1,W
 	MOVWF	Param79
 ;
@@ -1194,9 +1122,9 @@ RAI_IntUpdate	CLRF	CurrentADC
 	BTFSS	IntCount,4	;16 integrations?
 	RETURN		; not yet
 	CLRF	IntCount
-	MOVLW	low BatteryVolts
+	MOVLW	low OutputVolts
 	MOVWF	FSR0L
-	MOVLW	high BatteryVolts
+	MOVLW	high OutputVolts
 	MOVWF	FSR0H
 	MOVLW	low IntAN0+1
 	MOVWF	FSR1L

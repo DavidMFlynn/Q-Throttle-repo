@@ -2,5 +2,5 @@
 /Firmware1938/Q-Throttle.X/build/default/
 /Firmware1938/Q-Throttle.X/dist/default/
 *.bbprojectsettings
+*.bbprojectd
 *.X
-*.bbprojectsettings

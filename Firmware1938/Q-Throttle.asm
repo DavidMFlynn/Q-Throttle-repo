@@ -36,7 +36,7 @@
 ;   Pin 8  Vss	GND
 ;   Pin 9  RA7/OSC1		RA7, RCMode Serial select (0=RS-485, 1=X-BEE)
 ;   Pin 10 RA6/OSC2	VCAP
-;   Pin 11 RC0		ADC/DCC Select Switch
+;   Pin 11 RC0		ADC/DCC Select Switch (Active High)
 ;   Pin 12 RC1/CCP2		mosfet Drive enable/PWM
 ;   Pin 13 RC2/CCP1		mosfet Drive East/West select
 ;   Pin 14 RC3		SCL I2C RAM
@@ -49,7 +49,7 @@
 ;   Pin 20 Vdd	+5V
 ;   Pin 21 RB0/AN12		East LED (Active High)
 ;   Pin 22 RB1/AN10		VOut LED (Active High)
-;   Pin 23 RB2/AN8		DCC LED (Active High)
+;   Pin 23 RB2/AN8		DCC/ADC* LED (Active High)
 ;   Pin 24 RB3/AN9/CCP2	VOUTPWM
 ;   Pin 25 RB4/AN11		AN11 IFB Track Current
 ;   Pin 26 RB5/AN13		West LED (Active High)
@@ -112,11 +112,10 @@ ADCON1_Value	EQU	b'11110011'	;Right Justify, Frc clock,
 			; FVR & Vss Vref
 ;    Port A bits
 PortADDRBits	EQU	b'11111111'
-PortAValue	EQU	b'00000000'
+PortAValue	EQU	b'00010000'
 ANSELA_Value	EQU	b'00101111'
 #Define	SystemLED	LATA,4	;Output, always 0=LED ON
 #Define	SystemLEDTris	TRISA,4
-#Define	SysBtn	PORTA,4
 #Define	RA5_In	PORTA,5	;unused
 #Define	RA6_In	PORTA,6	;unused
 #Define	LatchedDataIn	PORTA,7	;RA7, Latched I/O Data
@@ -128,26 +127,29 @@ OUT_AddrMask	EQU	0x07
 ;
 ;
 ;    Port B bits
-PortBDDRBits	EQU	b'11000000'	;outputs
-PortBValue	EQU	b'11000111'	;E* lines high
+PortBDDRBits	EQU	b'11010000'	;outputs
+PortBValue	EQU	b'11000011'
 ;
-#Define	Latch0_E	LATB,0	;U2.7 Enable (Active Low Output)
-; Note: on rev n/c pcb A0 and A2 are reversed on U3, OK on U2 and U4
-#Define	Latch1_E	LATB,1	;U3.7 Enable (Active Low Output)
-#Define	Latch2_E	LATB,2	;U4.14 Enable Chip Select (Active Low Output)
-#Define	Latch_A0	LATB,3	;Output
-#Define	Latch_A1	LATB,4	;Output
-#Define	Latch_A2	LATB,5	;Output
+#Define	EastLED	LATB,0	;East LED (Active High)
+#Define	VOutLED	LATB,1	;VOut LED (Active High)
+#Define	DCCLED	LATB,2	;DCC/ADC* LED (Active High)
+;			;RB3=CCP2 VOUTPWM
+;			;RB4=AN11 IFB Track Current
+#Define	WestLED	LATB,5	;West LED (Active High)
 ;			;RB6=ICSPCLK
 ;			;RB7=ICSPDAT
 ;
-PortCDDRBits	EQU	b'11110000'
+PortCDDRBits	EQU	b'11111001'
 PortCValue	EQU	b'00000000'
 ;
-#Define	RS232CTSout	LATC,4
-#Define	RS232RTSin	PORTC,5
-#Define	RS232TXBit	LATC,6
-#Define	RS232RXBit	LATC,7
+#Define	SW1_Btn	PORTC,0	;ADC/DCC Select Switch (Active High)
+#Define	DRVENA	LATC,1	;mosfet Drive enable/PWM
+#Define	DRV_Dir	LATC,2	;mosfet Drive East/West* select
+#Define	RC3_In	PORTC,3	;SCL I2C RAM
+#Define	RC4_In	PORTC,4	;SDA I2C RAM
+#Define	RS485Send	PORTC,5	;RS-485 Send/Recieve*
+#Define	RS232TXBit	LATC,6	;RS-232 TX
+#Define	RS232RXBit	LATC,7	;RS-232 RX
 ;
 ;=========================================================================================
 ;=========================================================================================
@@ -241,7 +243,7 @@ DebounceTime	EQU	d'10'
 #Define	DataSentFlag	SerFlags,2
 ;
 ;
-#Define	SysBtnBit	SysFlags,0
+#Define	DCC_ActiveFlag	SysFlags,0
 #Define	PWMSyncBit	SysFlags,1
 ;
 #Define	DispDec3pl	SysFlags,2
@@ -429,7 +431,7 @@ nvSysFlags;	RES	1
 ;
 	ORG	0x004	; interrupt vector location
 	MOVLB	0	; bank0
-;	CLRF	PCLATH	;Needed only if program extends beyond segment 0.
+	CLRF	PCLATH	;Needed only if program extends beyond segment 0.
 ;
 ;-------------------------------
 ; Stuff that happens every 1/100 second
@@ -452,9 +454,6 @@ nvSysFlags;	RES	1
 	MOVLB	1
 	bsf	SystemLEDTris	;LED off
 	MOVLB	0
-	BCF	SysBtnBit
-	BTFSS	SysBtn	;read the port
-	BSF	SysBtnBit	;button is pressed
 ;
 	decfsz	tickcount,F
 	bra	ISR_Timer2_End
@@ -649,7 +648,7 @@ CCP1CON_Value	equ	b'00001100'	;PWM mode
 	MOVWF	TargetVolts+1
 
 ;	BSF	PIE1,CCP1IE	;not used in PWM mode
-	BSF	PIE3,TMR4IE	;may be used to sync updates
+;	BSF	PIE3,TMR4IE	;may be used to sync updates
 			; one update per duty cycle
 ;============================
 	if oldCode
@@ -724,8 +723,8 @@ MainLoop	CLRWDT
 ;
 	MOVLB	0x00	; bank 0
 ;
-	CALL	ReadAnalogInputs
-	CALL	AdjustPWM
+;	CALL	ReadAnalogInputs
+;	CALL	AdjustPWM
 ;
 ;
 ;-----------------------------------------------------------------------------------------
@@ -762,7 +761,7 @@ ML_Ser_End:
 ;
 	BCF	RXDataIsNew
 ;
-	CALL	CMD_Interp
+;	CALL	CMD_Interp
 ;
 ML_Ser_NoData:
 ;
@@ -771,6 +770,26 @@ ML_Ser_NoData:
 ;
 ;=========================================================================================
 ;*****************************************************************************************
+;=========================================================================================
+;
+SetADCWest	movlb	2
+	bcf	EastLED
+	bcf	DRV_Dir
+	bsf	WestLED
+	bcf	DCCLED
+	movlb	0
+	bcf	DCC_ActiveFlag
+	return
+;
+SetADCEast	movlb	2
+	bsf	EastLED
+	bsf	DRV_Dir
+	bcf	WestLED
+	bcf	DCCLED
+	movlb	0
+	bcf	DCC_ActiveFlag
+	return
+;
 ;=========================================================================================
 ; Handle RS-232 Commands
 CMD_SendAN0	EQU	'A'	;Batt Volts, Returns A00000\n

@@ -97,7 +97,6 @@
 ;
 #Define	_C	STATUS,C
 #Define	_Z	STATUS,Z
-DefaultVolts	EQU	0x40
 ;
 ;====================================================================================================
 	nolist
@@ -266,29 +265,24 @@ DebounceTime	EQU	d'10'
 	cblock	0xA0
 ;
 ;Analog data
-	OutputVolts:2		;AN0
-	MaxCurrentPot:2		;AN1
-	OutputCurrent:2		;AN2
-	VRefVolts:2		;AN4
-	IntCount		;Integrator Count
 	RawAN0:2
 	RawAN1:2
 	RawAN2:2
 	RawAN4:2
-	IntAN0:2
-	IntAN1:2
-	IntAN2:2
-	IntAN4:2
 	CurrentADC		;0..LastADC
 	ADCFlags
 	TargetVolts:2
 ;
 	endc
 ;
+OutputVolts	equ	RawAN0	;AN0
+MaxCurrentPot	equ	RawAN1	;AN1
+OutputCurrent	equ	RawAN2	;AN2
+VRefVolts	equ	RawAN4	;AN4
 ;
 PWM_Max	equ	0x7F
 ;
-LastADC	equ	4
+LastADC	equ	3	;AN0,AN1,AN2,AN4
 #Define	ADC_AquireFlag	ADCFlags,0
 #Define	ADC_ConvertFlag	ADCFlags,1
 ;
@@ -624,47 +618,28 @@ PR2_Value	EQU	.125
 ;==============================
 ; setup CCP2 for PWM
 ;
-CCP1CON_Value	equ	b'00001100'	;PWM mode
+CCP2CON_Value	equ	b'00001100'	;PWM mode
 ;
 	MOVLB	5	;Bank 5
-	MOVLW	CCP1CON_Value
-	MOVWF	CCP1CON
-	MOVLW	b'00000001'	;use TMR4
+	MOVLW	CCP2CON_Value
+	MOVWF	CCP2CON
+	MOVLW	b'00000100'	;use TMR4
 	MOVWF	CCPTMRS0
 	MOVLW	0x01	;0.4% duty
-	MOVWF	CCPR1L
+	MOVWF	CCPR2L
 ;
 ; Config Timer4 to control PWM on CCP1, Fosc/4(2MHz) / 101 = 19.8KHz	
 	MOVLB	8
-	MOVLW	b'00000100'	;1:1 pre,ON,1:1 post
+	MOVLW	b'00000101'	;4:1 pre,ON,1:1 post
 	MOVWF	T4CON
-	MOVLW	0x65	; 19.8KHz
+	MOVLW	0xFF	; 7.8KHz
 	MOVWF	PR4
 ; default to the highest volt setting
 	MOVLB	1	;Bank 1
-	MOVLW	low DefaultVolts
-	MOVWF	TargetVolts
-	MOVLW	high DefaultVolts
-	MOVWF	TargetVolts+1
 
-;	BSF	PIE1,CCP1IE	;not used in PWM mode
-;	BSF	PIE3,TMR4IE	;may be used to sync updates
+;	BSF	PIE1,CCP2IE	;not used in PWM mode
+	BSF	PIE3,TMR4IE	;may be used to sync updates
 			; one update per duty cycle
-;============================
-	if oldCode
-; setup CCP2 for compare pulse output for R/C Servo
-;
-	BANKSEL	SigOutTime	;Bank 5
-	MOVLW	low kCenterPulseWidth
-	MOVWF	SigOutTime
-	MOVLW	high kCenterPulseWidth
-	MOVWF	SigOutTime+1
-	MOVLW	CCPCON_Set
-	MOVWF	CCP2CON
-	MOVLB	0x01	;Bank 1
-	bsf	PIE2,CCP2IE
-	endif	
-;
 ;=========================================
 ;
 	MOVLB	0x00	;Bank 0
@@ -723,8 +698,8 @@ MainLoop	CLRWDT
 ;
 	MOVLB	0x00	; bank 0
 ;
-;	CALL	ReadAnalogInputs
-;	CALL	AdjustPWM
+	CALL	ReadAnalogInputs
+	CALL	AdjustPWM
 ;
 ;
 ;-----------------------------------------------------------------------------------------
@@ -1018,18 +993,16 @@ AdjustPWM	MOVLB	0	;Bank 0
 	BCF	PWMSyncBit
 ;	bra	AdjustPWM_Lower	;tc
 	MOVLB	1
-;Increasing the PWM duty cycle lowers the voltage.
-;Param79:Param78=BatteryVolts-TargetBVolts
-;TargetBVolts=LowVolts=.800
-;PWMVolts=0..1023=0..20v
-	MOVF	TargetVolts,W
-	SUBWF	RawAN4,W
+;Increasing the PWM duty cycle increases the voltage.
+;Param79:Param78=OutputVolts-VRefVolts
+	MOVF	VRefVolts,W
+	SUBWF	OutputVolts,W
 	MOVWF	Param78
-	MOVF	TargetVolts+1,W
-	SUBWFB	RawAN4+1,W
+	MOVF	VRefVolts+1,W
+	SUBWFB	OutputVolts+1,W
 	MOVWF	Param79
 ;
-	BTFSC	Param79,7	;PWMVolts<TargetBVolts?
+	BTFSC	Param79,7	;OutputVolts<VRefVolts?
 	bra	AdjustPWM_Higher	; yes, adjust higher
 	MOVF	Param79,F
 	SKPZ		;PWMVolts>TargetBVolts?
@@ -1041,37 +1014,29 @@ AdjustPWM	MOVLB	0	;Bank 0
 			; yes, adjust lower	
 ;
 AdjustPWM_Lower	MOVLB	5	;Bank 5
-	movf	PWMValue,W
-	SUBLW	PWM_Max
+	MOVF	PWMValue,F
 	SKPNZ
 	bra	AdjustPWM_End
-	INCF	PWMValue,F
-;	
+	incf	PWMValue,F
 	bra	AdjustPWM_Set
 ;
 AdjustPWM_Higher	MOVLB	5	;Bank 5
-	MOVF	PWMValue,F
-	SKPNZ
-	bra	AdjustPWM_End
-	DECF	PWMValue,F
-; rise 2x faster
-	MOVF	PWMValue,F
-	SKPNZ
-	bra	AdjustPWM_Set
-	DECF	PWMValue,F
+	incf	PWMValue,W
+	SKPNZ		;at 255?
+	bra	AdjustPWM_End	; yes
+	INCF	PWMValue,F	; no
 ;
-AdjustPWM_Set	LSRF	PWMValue,W
-	BCF	CCP1CON,DC1B0
-	BTFSC	_C
-	BSF	CCP1CON,DC1B0
-	LSRF	WREG,F
-	BCF	CCP1CON,DC1B1
-	BTFSC	_C
-	BSF	CCP1CON,DC1B1
+AdjustPWM_Set	movf	PWMValue,W
+;	BCF	CCP1CON,DC1B0
+;	BTFSC	_C
+;	BSF	CCP1CON,DC1B0
+;	LSRF	WREG,F
+;	BCF	CCP1CON,DC1B1
+;	BTFSC	_C
+;	BSF	CCP1CON,DC1B1
 	MOVWF	CCPR1L
 ;
 AdjustPWM_End	MOVLB	0
-;
 	return
 ;
 ;=========================================================================================
@@ -1105,85 +1070,33 @@ ReadAnalogInputs_1	BTFSS	ADC_ConvertFlag	;Converting?
 	MOVLW	high RawAN0
 	MOVWF	FSR0H
 ;
-	LSLF	CurrentADC,W	;x2
-	ADDLW	low IntAN0
-	MOVWF	FSR1L
-	MOVLW	high IntAN0
-	MOVWF	FSR1H
-;
 	MOVF	ADRESL,W
 	MOVWI	FSR0++
-	ADDWF	INDF1,F
-	INCF	FSR1L,F
 	MOVF	ADRESH,W
 	MOVWI	FSR0++
-	ADDWFC	INDF1,F
 ;
 ReadAnalogInputs_3	INCF	CurrentADC,F
 ;
 	MOVLW	LastADC+1
 	SUBWF	CurrentADC,W
 	SKPNZ		;Past end?
-	CALL	RAI_IntUpdate	; Yes, start over at AN0
+	clrf	CurrentADC	; Yes, start over at AN0
 ;
-	LSLF	CurrentADC,W
-	LSLF	WREG,F
-	IORLW	ADCON0_Value
+	call	GetANSelectValue
 	MOVWF	ADCON0
 	BSF	ADC_AquireFlag
-;
 ;
 ReadAnalogInputs_End	MOVLB	0
 	return
 ;
-RAI_IntUpdate	CLRF	CurrentADC
-	INCF	IntCount,F
-	BTFSS	IntCount,4	;16 integrations?
-	RETURN		; not yet
-	CLRF	IntCount
-	MOVLW	low OutputVolts
-	MOVWF	FSR0L
-	MOVLW	high OutputVolts
-	MOVWF	FSR0H
-	MOVLW	low IntAN0+1
-	MOVWF	FSR1L
-	MOVLW	high IntAN0
-	MOVWF	FSR1H
 ;
-; for Param79=4 downto 1
-;  for Param78=4 downto 1
-;   IntAN=IntAN/16
-;  next
-;  AN=IntAN
-; next
-;
-	MOVLW	LastADC+1
-	MOVWF	Param79
-;
-RAI_L2	MOVLW	0x04	;/16
-	MOVWF	Param78
-RAI_L1	LSRF	INDF1,F
-	DECF	FSR1L,F
-	RRF	INDF1,F
-	INCF	FSR1L,F
-	DECFSZ	Param78,F
-	BRA	RAI_L1
-;
-	DECF	FSR1L,F
-	MOVF	INDF1,W	;copy LSB
-	CLRF	INDF1
-	MOVWI	FSR0++
-	INCF	FSR1L,F
-	MOVF	INDF1,W	;copy MSB
-	CLRF	INDF1
-	MOVWI	FSR0++
-;
-	INCF	FSR1L,F
-	INCF	FSR1L,F	;MSB of next IntA
-	DECFSZ	Param79,F
-	BRA	RAI_L2
-	RETURN
-;
+GetANSelectValue	movf	CurrentADC,W
+	BRW
+	retlw	b'00000001'	;AN0
+	retlw	b'00000101'	;AN1
+	retlw	b'00001001'	;AN2
+	retlw	b'00010001'	;AN4
+;	
 ;=========================================================================================
 ;=========================================================================================
 	include	F1938_Common.inc
